@@ -1,0 +1,85 @@
+/* 基本リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #e0f7fa, #80deea);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 400px;
+  width: 100%;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #00796b;
+}
+
+#reader {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+#result {
+  font-size: 1.3rem;
+  color: #004d40;
+  margin-bottom: 15px;
+  min-height: 1.5em;
+}
+
+#button-area {
+  display: none;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #00796b;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #004d40;
+  transform: translateY(-2px);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 10px 16px;
+  }
+}

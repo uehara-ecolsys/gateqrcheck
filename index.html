@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工事車両QR判定</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body>
+
+<div class="container">
+  <h1>工事車両QR判定アプリ</h1>
+
+  <div id="reader"></div>
+  <p id="result">ここに結果表示</p>
+
+  <div id="button-area">
+    <button id="button1" class="btn" onclick=alert1()>入場</button>
+    <button id="button2" class="btn" onclick=alert2()>退場</button>
+  </div>
+</div>
+
+<script>
+  const handleQRCode =(code)=>{
+    const result = document.getElementById("result");
+    const btnArea = document.getElementById("button-area");
+
+    if(code.includes("TYPE_A")) result.innerText = "A社の工事車両です";
+    else if(code.includes("TYPE_B")) result.innerText = "I社の工事車両です";
+    else if(code.includes("TYPE_C")) result.innerText = "H社の工事車両です";
+    else result.innerText = "不明なQRです";
+
+    // ボタン表示制御
+    if(result.innerText === "不明なQRです"){
+      btnArea.style.display = "none";
+    } else {
+      btnArea.style.display = "flex";
+    }
+  }
+
+  // ページ読み込み後に開始
+  window.addEventListener('DOMContentLoaded', () => {
+    Html5Qrcode.getCameras().then(cameras => {
+      if(cameras && cameras.length){
+        const html5QrCode = new Html5Qrcode("reader");
+        html5QrCode.start(
+          { facingMode: "environment" },
+          { fps: 10, qrbox: 250 },
+          handleQRCode
+        );
+      } else {
+        alert("カメラが見つかりません");
+      }
+    }).catch(err => console.error(err));
+  });
+
+  const alert1 = ()=>{
+    alert('入場しました（データ送信完了）')
+  }
+    const alert2 = ()=>{
+    alert('退場しました（データ送信完了）')
+  }
+</script>
+
+</body>
+</html>
